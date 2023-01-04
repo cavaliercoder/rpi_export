@@ -10,9 +10,9 @@ Currently supports the following metrics from the VideoCore System-on-Chip:
 - Voltages
 - Turbo mode
 
-`rpi_exporter` is a written in Go, has no dependencies and does not rely on
+`rpi_exporter` is written in Go, has no dependencies and does not rely on
 `vcgencmd` to query hardware stats. It interfaces directly with the VideoCore
-device.
+device so that metric-collection is as lightweight and fast as possible.
 
 ![Grafana dashboard](assets/grafana.png)
 
