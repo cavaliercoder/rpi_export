@@ -226,7 +226,7 @@ func (w *expWriter) write() error {
 		metricTypeGauge,
 		"id",
 	)
-	w.writeSample(formatVolts(maxTemp*9/5+32), "soc")
+	w.writeSample(formatTemp(maxTemp*9/5+32), "soc")
 
 	/*
 	 * Voltages
