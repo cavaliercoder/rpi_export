@@ -6,3 +6,14 @@ rpi_exporter:
 	GOARCH=arm \
 	GOARM=7 \
 	go build -o . ./...
+
+install: rpi_exporter
+	install \
+		-m 755 \
+		-o node_exporter \
+		-g node_exporter \
+		rpi_exporter \
+		/opt/node_exporter/rpi_exporter
+
+.PHONY: all install
+
