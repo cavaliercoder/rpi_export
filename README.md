@@ -1,6 +1,18 @@
 # rpi_exporter
 
-A Prometheus exporter for Raspberry Pi hardware metrics.
+A lightweight Prometheus exporter for Raspberry Pi hardware metrics.
+
+Currently supports the following metrics from the VideoCore System-on-Chip:
+
+- Component power states
+- Clock rates
+- Temperatures
+- Voltages
+- Turbo mode
+
+`rpi_exporter` is a written in Go, has no dependencies and does not rely on
+`vcgencmd` to query hardware stats. It interfaces directly with the VideoCore
+device.
 
 ![Grafana dashboard](assets/grafana.png)
 
