@@ -21,8 +21,12 @@ func main() {
 
 	if *flagAddr != "" {
 		http.Handle("/metrics", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			prometheus.Write(w)
+			if err := prometheus.Write(w); err != nil {
+				log.Printf("Error: %v", err)
+				http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+			}
 		}))
+		log.Printf("Listening on %s", *flagAddr)
 		http.ListenAndServe(*flagAddr, nil)
 		return
 	}

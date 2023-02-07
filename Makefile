@@ -15,5 +15,8 @@ install: rpi_exporter
 		rpi_exporter \
 		/opt/node_exporter/rpi_exporter
 
-.PHONY: all install
+clean:
+	rm -f rpi_exporter
+
+.PHONY: all clean install
 
