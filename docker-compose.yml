@@ -1,0 +1,11 @@
+---
+version: "3.5"
+
+services:
+    rpi_exporter:
+       container_name: rpi_exporter
+       image: d3vilh/rpi_exporter-arm64:latest
+       privileged: true
+       ports:
+           - "9110:9110/tcp"
+       restart: always
