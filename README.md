@@ -61,3 +61,8 @@ scrape_configs:
 ```shell
 $ sudo systemctl restart prometheus.service
 ```
+
+## Build Docker image
+```shell
+docker build --force-rm=true -t rpi_exporter-arm64 .
+```

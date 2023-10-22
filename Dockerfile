@@ -1,11 +1,14 @@
-MAINTAINER d3vilh@github
-LABEL rpi_exporter.author="cavaliercoder@github"
-FROM arm64v8/debian
-ARG OS=linux
-ARG ARCH=arm64v8
-ARG DEBIAN_FRONTEND=noninteractive
+FROM arm64v8/alpine as build
+RUN apk update && apk add --no-cache make go
+WORKDIR /opt
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN make 
+###
+FROM arm64v8/alpine 
+LABEL rpi_exporter.author="cavaliercoder@github" maintainer="Mr.Philipp <d3vilh@github.com>"
 EXPOSE 9110
 WORKDIR /opt
-ADD rpi_exporter /opt/rpi_exporter
-RUN chmod +x /opt/rpi_exporter
-ENTRYPOINT /opt/rpi_exporter -addr=:9110
+COPY --from=build /opt/rpi_exporter /opt
+CMD ["./rpi_exporter", "-addr=:9110"]
