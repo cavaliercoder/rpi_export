@@ -5,7 +5,8 @@ services:
     rpi_exporter:
        container_name: rpi_exporter
        image: d3vilh/rpi_exporter-arm64:latest
-       privileged: true
+       devices:
+           - /dev/vcio
        ports:
            - "9110:9110/tcp"
        restart: always
